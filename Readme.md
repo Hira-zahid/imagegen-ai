@@ -71,17 +71,17 @@ Install dependencies:
 pip install -r requirements.txt
 ### Project Structure
 File/Folder	Description
-# 1. app.py	Unified gRPC + Flask server (default entry)
-# 2.server.py	gRPC server only (optional split)
-# 3.client/	Optional gRPC client example code
-# 4.http_gateway/app.py	REST API Gateway only (optional split)
-# 5.templates/index.html	Web form for user prompt
-# 6.imagegen.proto	gRPC service definition
-# 7.imagegen_pb2*.py	gRPC auto-generated Python files
-# 8.generated_image/	Folder where generated images are saved
-# 9.imagegen.postman_collection.json	Postman test collection
-# 10.Dockerfile	Docker build file
-# 11.docker-compose.yml	Multi-service Docker setup
+ 1. app.py	Unified gRPC + Flask server (default entry)
+ 2.server.py	gRPC server only (optional split)
+ 3.client/	Optional gRPC client example code
+ 4.http_gateway/app.py	REST API Gateway only (optional split)
+ 5.templates/index.html	Web form for user prompt
+ 6.imagegen.proto	gRPC service definition
+ 7.imagegen_pb2*.py	gRPC auto-generated Python files
+ 8.generated_image/	Folder where generated images are saved
+ 9.imagegen.postman_collection.json	Postman test collection
+ 10.Dockerfile	Docker build file
+ 11.docker-compose.yml	Multi-service Docker setup
 
 ## How to Run the Project
  # Method 1: Run Locally without Docker

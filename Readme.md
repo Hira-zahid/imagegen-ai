@@ -67,7 +67,7 @@ This project demonstrates a microservice-based architecture for generating image
 
 Install dependencies:
 
-```bash
+
 pip install -r requirements.txt
 📁 Project Structure
 File/Folder	Description

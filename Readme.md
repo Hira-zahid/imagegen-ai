@@ -45,7 +45,7 @@ A microservice-based text-to-image generation system built using:
 
 ### 1. Install Dependencies
 
-```bash
+
 pip install -r requirements.txt
 # ImageGen AI - Text-to-Image Generation
 

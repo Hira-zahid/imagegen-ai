@@ -1,0 +1,17 @@
+restgateway:
+  build:
+    context: .
+    dockerfile: Dockerfile
+  ports:
+    - "8000:8000"
+  depends_on:
+    - grpcserver
+  command: python http_gateway.py
+
+
+services:
+  directory:
+    image: directory
+    build:
+      context: .
+      dockerfile: ./Dockerfile

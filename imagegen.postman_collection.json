@@ -1,0 +1,105 @@
+{
+    "info": {
+      "name": "ImageGen REST API - Full Test Suite",
+      "_postman_id": "12345-abcdef",
+      "description": "Test suite for REST gateway to gRPC image generator",
+      "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+      {
+        "name": "✅ Generate Image (Valid)",
+        "request": {
+          "method": "POST",
+          "header": [{"key": "Content-Type", "value": "application/json"}],
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"prompt\": \"a castle on a mountain\",\n  \"style\": \"Fantasy\"\n}"
+          },
+          "url": {"raw": "http://localhost:8000/generate", "host": ["localhost"], "port": "8000", "path": ["generate"]}
+        },
+        "event": [{
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", () => pm.response.to.have.status(200));",
+              "const jsonData = pm.response.json();",
+              "pm.expect(jsonData).to.have.property(\"status\");",
+              "pm.expect(jsonData).to.have.property(\"image_base64\");",
+              "pm.expect(jsonData.image_base64.length).to.be.above(10);"
+            ],
+            "type": "text/javascript"
+          }
+        }]
+      },
+      {
+        "name": "❌ Missing Prompt",
+        "request": {
+          "method": "POST",
+          "header": [{"key": "Content-Type", "value": "application/json"}],
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"style\": \"Fantasy\"\n}"
+          },
+          "url": {"raw": "http://localhost:8000/generate", "host": ["localhost"], "port": "8000", "path": ["generate"]}
+        },
+        "event": [{
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 400 or 422 for missing prompt\", () => {",
+              "  pm.expect(pm.response.code).to.be.oneOf([400, 422]);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }]
+      },
+      {
+        "name": "❌ Invalid Style",
+        "request": {
+          "method": "POST",
+          "header": [{"key": "Content-Type", "value": "application/json"}],
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"prompt\": \"a unicorn\",\n  \"style\": \"SciFiFantasyAnimeHybrid\"\n}"
+          },
+          "url": {"raw": "http://localhost:8000/generate", "host": ["localhost"], "port": "8000", "path": ["generate"]}
+        },
+        "event": [{
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status is 400/422/500 for invalid style\", () => {",
+              "  pm.expect(pm.response.code).to.be.oneOf([400, 422, 500]);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }]
+      },
+      {
+        "name": "❌ Empty Body",
+        "request": {
+          "method": "POST",
+          "header": [{"key": "Content-Type", "value": "application/json"}],
+          "body": {
+            "mode": "raw",
+            "raw": ""
+          },
+          "url": {"raw": "http://localhost:8000/generate", "host": ["localhost"], "port": "8000", "path": ["generate"]}
+        },
+        "event": [{
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Fails on empty body with 400 or 422\", () => {",
+              "  pm.expect(pm.response.code).to.be.oneOf([400, 422]);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }]
+      }
+    ]
+  }
+  

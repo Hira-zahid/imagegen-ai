@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+service ImageGenService {
+  rpc Generate (ImageRequest) returns (ImageResponse);
+}
+
+message ImageRequest {
+  string prompt = 1;
+  string style = 2; // ✅ Add this line
+}
+
+message ImageResponse {
+  bytes image_data = 1;
+}

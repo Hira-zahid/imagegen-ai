@@ -1,0 +1,26 @@
+# To ensure app dependencies are ported from your virtual environment/host machine into your container, run 'pip freeze > requirements.txt' in the terminal to overwrite this file
+# Core ML and Diffusion
+torch>=2.0.0
+transformers
+diffusers
+accelerate
+safetensors
+
+# gRPC
+grpcio
+grpcio-tools
+
+# REST Gateway (choose one or both depending on your setup)
+fastapi
+uvicorn[standard]
+# OR if using Flask
+flask
+
+# Image handling
+Pillow
+
+# Web (optional if using HTML UI)
+jinja2
+
+# Utilities
+python-multipart  # for file/form handling in FastAPI

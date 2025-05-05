@@ -45,7 +45,7 @@ A microservice-based text-to-image generation system built using:
 
 ### 1. Install Dependencies
 
-```
+
 pip install -r requirements.txt
 # ImageGen AI - Text-to-Image Generation
 
@@ -69,36 +69,36 @@ Install dependencies:
 
 
 pip install -r requirements.txt
-📁 Project Structure
+### Project Structure
 File/Folder	Description
-app.py	Unified gRPC + Flask server (default entry)
-server.py	gRPC server only (optional split)
-client/	Optional gRPC client example code
-http_gateway/app.py	REST API Gateway only (optional split)
-templates/index.html	Web form for user prompt
-imagegen.proto	gRPC service definition
-imagegen_pb2*.py	gRPC auto-generated Python files
-generated_image/	Folder where generated images are saved
-imagegen.postman_collection.json	Postman test collection
-Dockerfile	Docker build file
-docker-compose.yml	Multi-service Docker setup
+# 1. app.py	Unified gRPC + Flask server (default entry)
+# 2.server.py	gRPC server only (optional split)
+# 3.client/	Optional gRPC client example code
+# 4.http_gateway/app.py	REST API Gateway only (optional split)
+# 5.templates/index.html	Web form for user prompt
+# 6.imagegen.proto	gRPC service definition
+# 7.imagegen_pb2*.py	gRPC auto-generated Python files
+# 8.generated_image/	Folder where generated images are saved
+# 9.imagegen.postman_collection.json	Postman test collection
+# 10.Dockerfile	Docker build file
+# 11.docker-compose.yml	Multi-service Docker setup
 
- How to Run the Project
- Method 1: Run Locally without Docker
+## How to Run the Project
+ # Method 1: Run Locally without Docker
 Use this if you're running on your machine (CPU or GPU).
 
-Step 1: Install Python Requirements
+# Step 1: Install Python Requirements
 bash
 Copy
 Edit
 pip install -r requirements.txt
 (If not included: pip install torch torchvision diffusers flask grpcio grpcio-tools)
 
-Step 2: Start the Server
+# Step 2: Start the Server
 You have two options:
 
-Option A: Combined Flask + gRPC (RECOMMENDED)
-bash
+# Option A: Combined Flask + gRPC (RECOMMENDED)
+
 Copy
 Edit
 python app.py
@@ -108,7 +108,7 @@ Runs gRPC server on port 50051
 
 Visit http://localhost:5000 to generate images via UI
 
-Option B: Run gRPC and REST Separately (Advanced)
+# Option B: Run gRPC and REST Separately (Advanced)
 Start gRPC server:
 
 bash
@@ -127,22 +127,22 @@ gRPC server on localhost:50051
 
 Flask REST API on http://localhost:5000
 
- Method 2: Run with Docker
+# Method 2: Run with Docker
 No need to install Python or dependencies locally.
 
-Step 1: Build the Docker image
+#  Step 1: Build the Docker image
 bash
 Copy
 Edit
 docker build -t imagegen .
-Step 2: Run the container
+# Step 2: Run the container
 bash
 Copy
 Edit
 docker run -p 5000:5000 -p 50051:50051 imagegen
 Visit http://localhost:5000 to access the UI.
 
- Method 3: Use Docker Compose (Multi-container Setup)
+# Method 3: Use Docker Compose (Multi-container Setup)
 bash
 Copy
 Edit
@@ -153,7 +153,7 @@ REST API at http://localhost:5000
 
 gRPC service at localhost:50051
 
- How to Use the API (Postman)
+ ` How to Use the API (Postman)`
 Import imagegen.postman_collection.json into Postman.
 
 Use the POST /generate endpoint.
@@ -176,9 +176,8 @@ You can modify the default model in app.py (currently uses CompVis/stable-diffus
 
 CPU generation is slow – for real-time performance, run with GPU
 
- Troubleshooting
+` Troubleshooting `
 Issue	Fix
 diffusers errors	Make sure transformers, accelerate, and diffusers are installed
 grpcio import fails	Reinstall with pip install grpcio grpcio-tools
 Docker build too slow	Ensure Docker has access to enough memory (6–8 GB)
-
